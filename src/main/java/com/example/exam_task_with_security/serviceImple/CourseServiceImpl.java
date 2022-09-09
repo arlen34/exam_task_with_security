@@ -1,0 +1,48 @@
+package com.example.exam_task_with_security.serviceImple;
+
+import com.example.exam_task_with_security.model.Course;
+import com.example.exam_task_with_security.repositoryImpl.repository.CourseRepository;
+import com.example.exam_task_with_security.serviceImple.service.CourseService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+
+import javax.transaction.Transactional;
+import java.util.List;
+@Service
+@Transactional
+public class CourseServiceImpl implements CourseService {
+    private final CourseRepository repository;
+
+    @Autowired
+    public CourseServiceImpl( CourseRepository repository) {
+        this.repository = repository;
+    }
+
+
+    @Override
+    public void saveCourse(int id, Course course) {
+        repository.saveCourse(id,course);
+    }
+
+    @Override
+    public List<Course> getAllCourses(int id) {
+        return repository.getAllCourses(id);
+    }
+
+    @Override
+    public Course getCourseById(int id) {
+        return repository.getCourseById(id);
+    }
+
+    @Override
+    public void updateCourse(Course course, int id) {
+        repository.updateCourse(id, course);
+    }
+
+
+    @Override
+    public void deleteCourse(int id) {
+        repository.deleteCourse(id);
+    }
+}
